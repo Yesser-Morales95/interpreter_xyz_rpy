@@ -1,5 +1,6 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+#include <std_msgs/Float32MultiArray.h>
 #include <trajectory_msgs/JointTrajectory.h>
 #include <trajectory_msgs/JointTrajectoryPoint.h>
 #include <boost/thread/thread.hpp>
@@ -22,6 +23,7 @@ public:
   }
 
   void trajectoryCallback(const trajectory_msgs::JointTrajectory &msg);
+
   trajectory_msgs::JointTrajectory msg1;
   std::vector<double> jointvaluesOLD = {0.0,0.0,0.0,0.0,0.0,0.0};
 private:
@@ -35,6 +37,7 @@ private:
 //  joint_sub = nh.subscribe("/set_joint_trajectory",1,&SubscriberAndPublish::trajectoryCallback, this);
 //  joint_pub = nh.advertise<trajectory_msgs::JointTrajectory>("set_joint_trajectory_delay", 1);
 //}
+
 void SubscriberAndPublish::trajectoryCallback(const trajectory_msgs::JointTrajectory &msg) // toma el ultimo valor
 {
 //                 jointvaluesOLD(6);
