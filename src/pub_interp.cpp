@@ -9,6 +9,7 @@
 #include <vector>
 #include <array>
 
+double ToG    = 57.295779513;
 
 class SubscriberAndPublish {
 public:
@@ -136,7 +137,7 @@ void SubscriberAndPublish::trajectoryCallback_gz(const trajectory_msgs::JointTra
                   for (int m=0; m<it; m++){
 
                   for (int i = 0; i < 6; i++) {
-                    Joint[i].data = msg.points[m].positions[i];
+                    Joint[i].data = msg.points[m].positions[i]/ToG;
                     velvalues  [i] = msg.points[m].velocities[i];
 //                    msgpub.points[0].positions[i] = msg.points[0].positions[i];
                   }
@@ -151,7 +152,7 @@ void SubscriberAndPublish::trajectoryCallback_gz(const trajectory_msgs::JointTra
    joint_pub5.publish(Joint[4]);
    joint_pub6.publish(Joint[5]);
 
-                  boost::this_thread::sleep(boost::posix_time::milliseconds(velvalues[0]));
+                  boost::this_thread::sleep(boost::posix_time::milliseconds(velvalues[0]));//10000));//velvalues[0]));
                  // }
 
 
